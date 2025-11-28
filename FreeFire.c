@@ -63,7 +63,7 @@ void listarItens() {
 void inserirItem() {
     //  check  capacidade
     if (totalItens >= CAPACIDADE_MAXIMA) {
-        printf("\n❌ ERRO: A mochila está cheia! Remova algum item antes de adicionar um novo.\n");
+        printf("\n❌ FALHA: Mochila cheia! Remova algum item antes de adicionar.\n");
         return;
     }
  
@@ -118,21 +118,21 @@ int buscarIndiceItem(const char *nomeBusca) {
             return i; // traz índice de item localizado
         }
     }
-    return -1; // Retorna -1 se o item não for encontrado
+    return -1; // Retorna -1 se não encontrado
 }
  
 /**
-* @brief busca item na mochila por nome e mostra
-* * Chama função 'buscarIndiceItem' se encantrado mostra dados
+* @brief busca item na mochila por nome e mostra informações
+* * Aciona função 'buscarIndiceItem' mostra informações do item se localizado
 */
 void buscarItem() {
     if (totalItens == 0) {
-        printf("\n⚠️ ATENÇÃO: Mochila está vazia. Sem itens para busca.\n");
+        printf("\n⚠️ ATENÇÃO: A mochila está vazia. Não há itens para buscar.\n");
         return;
     }
  
     char nomeBusca[30];
-    printf("\n### 🔎 BUSCA ITEM POR NOME ###\n");
+    printf("\n### 🔎 BUSCAR ITEM PELO NOME ###\n");
     printf("Digite o nome exato do item para buscar: ");
     
     // Limpa buffer entrada
@@ -168,12 +168,12 @@ void buscarItem() {
 */
 void removerItem() {
     if (totalItens == 0) {
-        printf("\n⚠️ ATENÇÃO: Mochila está vazia. Sem itens para excluir.\n");
+        printf("\n⚠️ ATENÇÃO: A mochila está vazia. Não há itens para remover.\n");
         return;
     }
  
     char nomeRemover[30];
-    printf("\n### 🗑️ REMOVER ITEM PELO NOME ###\n");
+    printf("\n### 🗑️ REMOVER ITEM POR NOME ###\n");
     printf("Digite o nome exato do item que deseja remover: ");
     
     // buffer limpeza de entrada
@@ -202,7 +202,7 @@ void removerItem() {
         listarItens(); // Lista itens para cada operação
     } else {
         // Não localizado
-        printf("\n❌ REMOÇÃO FALHOU: O item '%s' não foi encontrado na mochila.\n", nomeRemover);
+        printf("\n❌ ERRO NA REMOÇÃO : O item '%s' não foi localizado.\n", nomeRemover);
     }
 }
  
@@ -211,7 +211,7 @@ void removerItem() {
 */
 void exibirMenu() {
     printf("\n============================================\n");
-    printf("   🎮 SISTEMA DE INVENTÁRIO (MOCHILA) 🎒\n");
+    printf("   SISTEMA DE INVENTÁRIO (MOCHILA) 🎒\n");
     printf("============================================\n");
     printf("1. Cadastrar Novo Item\n");
     printf("2. Remover Item pelo Nome\n");
@@ -252,8 +252,8 @@ int main() {
         exibirMenu();
         // ler opção (usa scanf para valores inteiros)
         if (scanf("%d", &opcao) != 1) {
-            printf("\n ENTRADA INVÁLIDA. Por favor digite um número 0 a 4.\n");
-            // Limpa buffer entrada se erro
+            printf("\n❌ ENTRADA INVÁLIDA. Por favor, digite um número de 0 a 4.\n");
+            // Limpa buffer entrada em caso de erro
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
             opcao = -1; // aciona loop a continuar
@@ -278,10 +278,10 @@ int main() {
                 buscarItem();
                 break;
             case 0:
-                printf("\n Saindo do sistema de inventário. Boa sorte!\n");
+                printf("\n👋 Saindo do sistema de inventário. Boa sorte no jogo!\n");
                 break;
             default:
-                printf("\n OPÇÃO INVÁLIDA. Por favor escolha um número de 0 e 4.\n");
+                printf("\n⚠️ OPÇÃO INVÁLIDA. Por favor, escolha um número entre 0 e 4.\n");
         }
         
         // pausa  jogador  ler
